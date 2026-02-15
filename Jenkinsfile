@@ -2,17 +2,10 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven'
-        jdk 'JDK17'
+        maven 'Maven3'
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Build') {
             steps {
                 sh 'mvn clean package'
@@ -21,7 +14,7 @@ pipeline {
 
         stage('Run') {
             steps {
-                sh 'java -cp target/java-jenkins-demo-1.0.jar com.example.App'
+                sh 'java -jar target/*.jar'
             }
         }
     }
